@@ -25,15 +25,13 @@ jobs:
         run: echo "HAXEPATH=$HAXE_STD_PATH/.." >> $GITHUB_ENV
       - name: Install Haxe dependencies
         run: |
-          haxelib git hxcpp https://github.com/MRK2009/hxcpp --quiet
+          haxelib git hxcpp https://github.com/MRK2009/hxcpp-shadow --quiet
           haxelib git format https://github.com/HaxeFoundation/format 9d69fb342d030fa120d2deafafbbffad248332b8 --quiet
           haxelib git hxp https://github.com/openfl/hxp 47ef5ae6569cb0961761a2fbb416694df067124c --quiet
       - name: Enable HXCPP compile cache
         run: echo "HXCPP_COMPILE_CACHE=~/.hxcpp" >> $GITHUB_ENV
       - name: Configure Lime
-        run: |
-          haxelib dev lime ${{ github.workspace }}
-          haxelib run lime rebuild hxcpp
+        run: haxelib dev lime ${{ github.workspace }}
       - name: Rebuild Lime
         run: |
           CC=i686-linux-gnu-gcc-12 CXX=i686-linux-gnu-g++-12 linux32 haxelib run lime rebuild linux -32 -release -nocolor -nocffi -D HXCPP_M32
@@ -73,15 +71,13 @@ jobs:
       - name: Install Haxe dependencies
         run: |
           haxelib setup ~/haxelib
-          haxelib git hxcpp https://github.com/MRK2009/hxcpp --quiet
+          haxelib git hxcpp https://github.com/MRK2009/hxcpp-shadow --quiet
           haxelib git format https://github.com/HaxeFoundation/format 9d69fb342d030fa120d2deafafbbffad248332b8 --quiet
           haxelib git hxp https://github.com/openfl/hxp 47ef5ae6569cb0961761a2fbb416694df067124c --quiet
       - name: Enable HXCPP compile cache
         run: echo "HXCPP_COMPILE_CACHE=~/.hxcpp" >> $GITHUB_ENV
       - name: Configure Lime
-        run: |
-          haxelib dev lime ${{ github.workspace }}
-          haxelib run lime rebuild hxcpp
+        run: haxelib dev lime ${{ github.workspace }}
       - name: Rebuild Lime
         run: |
           CC=arm-linux-gnueabihf-gcc-12 CXX=arm-linux-gnueabihf-g++-12 AS=arm-linux-gnueabihf-as linux32 haxelib run lime rebuild linux -armv7 -release -nocolor -nocffi -D HXCPP_ARMV7
