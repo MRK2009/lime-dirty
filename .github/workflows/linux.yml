@@ -31,7 +31,9 @@ jobs:
       - name: Enable HXCPP compile cache
         run: echo "HXCPP_COMPILE_CACHE=~/.hxcpp" >> $GITHUB_ENV
       - name: Configure Lime
-        run: haxelib dev lime ${{ github.workspace }}
+        run: |
+          haxelib dev lime ${{ github.workspace }}
+          haxelib run lime rebuild hxcpp
       - name: Rebuild Lime
         run: |
           CC=i686-linux-gnu-gcc-12 CXX=i686-linux-gnu-g++-12 linux32 haxelib run lime rebuild linux -32 -release -nocolor -nocffi -D HXCPP_M32
@@ -77,7 +79,9 @@ jobs:
       - name: Enable HXCPP compile cache
         run: echo "HXCPP_COMPILE_CACHE=~/.hxcpp" >> $GITHUB_ENV
       - name: Configure Lime
-        run: haxelib dev lime ${{ github.workspace }}
+        run: |
+          haxelib dev lime ${{ github.workspace }}
+          haxelib run lime rebuild hxcpp
       - name: Rebuild Lime
         run: |
           CC=arm-linux-gnueabihf-gcc-12 CXX=arm-linux-gnueabihf-g++-12 AS=arm-linux-gnueabihf-as linux32 haxelib run lime rebuild linux -armv7 -release -nocolor -nocffi -D HXCPP_ARMV7
